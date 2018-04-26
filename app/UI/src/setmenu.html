@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Set Menu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="topnav">
+            <a class="nav-link active" href="home.html">Buon Pranzo</a>
+            <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+                <ul>
+                    <li>
+                        <a class="nav-link active" href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" href="menu.html">Menu</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link active" href="javascript:void(0)">Caterer</a>
+                        <div class="dropdown-content">
+                            <a href="meals.html">Manage Meals</a>
+                            <a href="setmenu.html">Set Menu</a>
+                            <a href="orders.html">Orders</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="bg-landingpage">
+                <div class="row justify-content-center ">
+                    <div class="col-sm-8 col-md-8">
+                        <form class="form-menu text-left mt-3">
+                            <p>
+                                <label for="new-meal">Add a new meal</label>
+                                <input id="new-meal" type="text" placeholder="Enter meal description">
+                                <button class="btn-add">Add</button>
+                            </p>
+                            <h3>Choose Meals To Be Added To The Day's Menu</h3>
+                            <ul id="available-meals">
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Beef with rice</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                        <button class="btn-add">Add to Menu</button>
+                                    </div>
+                                </li>
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Chicken and matooke</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                        <button class="btn-add">Add to Menu</button>
+                                    </div>
+                                </li>
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Minced meat with pasta</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                        <button class="btn-add">Add to Menu</button>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                            <h3 class="mt-3">Selected Meals For The Day's Menu</h3>
+                            <ul id="selected-meals">
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Vegetable rice</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                    </div>
+                                </li>
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Fried fish and fries</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                    </div>
+                                </li>
+                                <li class="floating-box">
+                                    <input type="checkbox">
+                                    <label>Beef with fries</label>
+                                    <div>
+                                        <button class="btn-edit">Edit</button>
+                                        <button class="btn-delete-meal">Delete</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>     
+
+        <footer class="footer">
+            <div class="container">
+                <p class="mt-5 mb-3 text-muted text-center">&copy; sbwambale </p>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>
