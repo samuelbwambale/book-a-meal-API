@@ -1,10 +1,10 @@
-# app/__init__.py
-
 from flask import Flask
+from config import config
 
-# Initialize the app
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__)
+app.config.from_object(config['development'])
+
+from .api import apiv1
+app.register_blueprint(apiv1, url_prefix='/api/v1')
 
 
-# Load the config file
-app.config.from_object('config')

@@ -15,7 +15,7 @@ class Orders:
     def addOrder(self):
         orders.append(self)
 
-    def updateOrder(self, meals)
+    def updateOrder(self, meals):
         self.meals = meals
 
 
