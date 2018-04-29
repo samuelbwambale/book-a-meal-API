@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.png)](https://travis-ci.org/samuelbwambale/book-a-meal)
+
+
 # Book-A-Meal
 
 This repository contains the description and a guide on how to clone and run the app.
