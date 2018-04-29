@@ -1,0 +1,17 @@
+click==6.7
+coverage==4.5.1
+Flask==0.12.2
+Flask-HTTPAuth==3.2.3
+Flask-Migrate==2.1.1
+flask-restplus==0.10.1
+Flask-Script==2.0.6
+Flask-SQLAlchemy==2.3.2
+gunicorn==19.7.1
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+virtualenv==15.1.0
+virtualenv-clone==0.2.6
+virtualenvwrapper==4.8.2
+Werkzeug==0.14.1
+
