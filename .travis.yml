@@ -1,0 +1,41 @@
+language: 
+  - python
+
+python:
+  - '3.4'
+  - '2.7'
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+
+# command to run tests
+script: pytest
+
+branches:
+  only:
+  - develop
+
+matrix:
+  include:
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '3.3'
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '3.4'
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '3.5'
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '3.6'
+    env: BUILD_SDIST=true
