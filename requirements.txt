@@ -1,4 +1,4 @@
-adium-theme-ubuntu==0.3.4
+
 alembic==0.9.8
 aniso8601==3.0.0
 apt-xapian-index==0.45
