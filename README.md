@@ -1,7 +1,11 @@
-[![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=master)](https://travis-ci.org/samuelbwambale/book-a-meal)
 
-[![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=develop)](https://travis-ci.org/samuelbwambale/book-a-meal)
 
+
+
+| Branch      | Status                |
+| ------------| ----------------------|
+| Master      | [![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=master)](https://travis-ci.org/samuelbwambale/book-a-meal)       |
+| Develop     | [![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=develop)](https://travis-ci.org/samuelbwambale/book-a-meal)        |
 
 # Book-A-Meal
 
@@ -11,7 +15,7 @@ This repository contains the description and a guide on how to clone and run the
 Book-A-Meal is an application that allows customers to make food orders and helps the food vendor know what the customers want to eat. 
 
 ### Required Features
-  1.	Users can create an account and log in
+  1.  Users can create an account and log in
   2.  Admin (Caterer) should be able to manage (i.e: add, modify and delete) meal options in the application
   3.  Admin (Caterer) should be able to setup menu for a specific day by selecting from the meal options available on the system
   4.  Authenticated users (customers) should be able to see the menu for a specific day and select an option out of the menu
