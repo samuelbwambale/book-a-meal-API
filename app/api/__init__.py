@@ -7,7 +7,7 @@ api = Api(apiv1)
 
 from .meals_resource import MealsResource
 from .meals_resource import MealResource
-from .meals_resource import MenuResource
+from .menus_resource import MenuResource
 
 
 api.add_resource(MealsResource,'/meals')
