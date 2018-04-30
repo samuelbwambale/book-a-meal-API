@@ -3,8 +3,6 @@ from app import app
 from app.meals import meals, Meal
 
 
-
-
 class ApiTestCase(unittest.TestCase):
     def test_addMeal(self):
         meal = Meal(desc="Matooke and Rice", price = 20000)
