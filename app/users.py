@@ -1,19 +1,18 @@
 users = []
-count = 0
 
-class Users:
-    def __init__(self, userId, email, password):
-        count += 1
-        self.id = count
-        self.email = email
+class User:
+    def __init__(self, username, password, isAdmin):
+        self.username = username
         self.password = password
+        self.isAdmin = isAdmin
 
     def addUser(self):
         users.append(self)
 
-    def updateUser(self, email, password):
-        self.email = email
+    def updateUser(self, username, password, isAdmin):
+        self.username = username
         self.password = password
+        self.isAdmin = isAdmin
 
     def deleteUser(self):
         users.remove(self)
