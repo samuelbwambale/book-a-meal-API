@@ -1,3 +1,4 @@
+from flask import jsonify
 from flask_restplus import Resource, reqparse
 from app.menu import Menu, menus
 
@@ -64,11 +65,9 @@ class MenuResource(Resource):
             "description": 1003
         }])
         menu.addMenu()
-        return {
-            'menus':  [{'id': menu.id, 'date': menu.date, 'meals': menu.meals} for menu in menus]
-        }, 200
+        return jsonify({
+            'menus': menus }), 200
 
     def get(self):
-        return {
-                'menus':  [{'id': menu.id, 'date': menu.date, 'meals': menu.meals} for menu in menus]
-            }
+        return jsonify({
+                'menus': menus})
