@@ -1,36 +1,54 @@
 from flask_restplus import Resource, reqparse
 from flask import jsonify
+from app.models.users import User, users, get_user_by_username
 
-from app.users import User, users
-
-
+parser = reqparse.RequestParser()
+parser.add_argument('username', type=str, required=True,
+                    help='Username is required')
+parser.add_argument('password', type=str, required=True,
+                    help='Password is required')
+parser.add_argument('isAdmin', type=bool, required=True,
+                    help='Status is required')
 
 
 class UsersResource(Resource):
     def get(self):
         return jsonify({
-            'users':  users })
+            'users':  users})
+
 
 class UserRegister(Resource):
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('username', type=str, required=True, help='Username is required')
-        parser.add_argument('password', type=str, required=True, help='Password is required')
-        parser.add_argument('isAdmin', type=bool, required=True, help='Status is required')
-        params = parser.parse_args()
-        username = params['username']
-        password = params['password']
-        isAdmin = params['isAdmin']
+        data = parser.parse_args()
 
-        user = User(username=roberts, password=pwd123, isAdmin=False)
+        user = User(
+        username=data['username'],
+        password=data['password'],
+        isAdmin=data['isAdmin'])
+
         user.addUser()
-        return jsonify ({ 'user': user  }), 200
-
+        return jsonify({'users': user})
 
 
 class UserLogin(Resource):
     def post(self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True,
+                    help='Username is required')
+        parser.add_argument('password', type=str, required=True,
+                    help='Password is required')
+        param = parser.parse_args()
+        user = get_user_by_username(param['username'])
+
+        if not user:
+            return {'message': 'User {} does not exist'. format(param['username'])}
+      
+        if user.password == param['password']:
+            return {'message': 'Logged in as {}'.format(user.username)}
+        else:
+            return {'message': 'Wrong credentials'}
+
+
 
 
 
