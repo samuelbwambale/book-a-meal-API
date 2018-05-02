@@ -1,8 +1,8 @@
 from flask_script import Manager
 from app import app
 import unittest
-
 manager = Manager(app)
+
 
 @manager.command
 def test():

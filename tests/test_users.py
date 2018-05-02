@@ -12,7 +12,6 @@ class UsersApiTestCase(unittest.TestCase):
         self.app = app.test_client()
 
     def test_register(self):
-        """ check response when add a user """
         user = {
             "username": "xaviers",
             "password": "pwdxxx", 
@@ -20,12 +19,10 @@ class UsersApiTestCase(unittest.TestCase):
         }
         response = self.app.post("/api/v1/auth/signup",\
             data=json.dumps(user), content_type='application/json')
+        
         self.assertEqual(response.status_code, 201)
-
-        """ verify that input data is same recived by the API """
         inputs = json.loads(response.get_data())
         self.assertEqual(inputs['user']['username'], "xaviers")
-        self.assertEqual(inputs['user']['password'], "pwdxxx")
         self.assertEqual(inputs['user']['isAdmin'], True)
 
     def test_login(self):
@@ -39,8 +36,7 @@ class UsersApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_login_missing_values(self):
-        """ missing values in input  """
+    def test_login_missing_input_values(self):
         usr = {
             "username": "xaviers",
             "password": "pwdxxx"
@@ -49,8 +45,19 @@ class UsersApiTestCase(unittest.TestCase):
             data=json.dumps(usr), content_type='application/json')
         self.assertEqual(response.status_code, 400)
 
+    def test_login_with_blank_inputs(self):
+        usr = {
+            "username": "  ",
+            "password": "  ",
+            "isAdmin": False
+        }
+        response = self.app.post("/api/v1/auth/login",\
+            data=json.dumps(usr), content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
     def test_getAllUsers(self):
         response = self.app.get('/api/v1/users', content_type = 'application/json')
+        import pdb; pdb.set_trace()
         self.assertEqual(response.status_code, 200)
 
-       
+    
