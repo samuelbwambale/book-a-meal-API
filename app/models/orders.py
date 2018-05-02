@@ -1,4 +1,27 @@
-orders = []
+orders = [
+        {
+      "id": 101,
+      "meals": [
+    {
+      "id": 21,
+      "desc": "Beans with rice",
+      "price": 20000    },
+    {
+      "id": 23,
+      "desc": "Minced meat with pasta",
+      "price": 14000    }
+    ]
+    },
+    {
+      "id": 104,
+      "meals": [
+    {
+      "id": 21,
+      "desc": "Beans with rice",
+      "price": 20000    }
+    ]
+    }
+]
 
 def get_order_by_id(order_id):
     for order in orders:
@@ -17,6 +40,12 @@ class Order:
 
     def addOrder(self):
         orders.append(self)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'meals': [meal.to_dict() for meal in self.meals]
+        }
 
 
 

@@ -7,8 +7,11 @@ parser.add_argument('meals', type=list, required=True)
 
 class OrderResource(Resource):
     def get(self, order_id):
-        order = Order.get_order_by_id(order_id)
-        return jsonify({'order': order})
+        order = get_order_by_id(order_id)
+        #return jsonify({'order': order})
+        return {
+            'orders': [order for order in orders]
+        }, 200
          
 
     def put(self, order_id):
