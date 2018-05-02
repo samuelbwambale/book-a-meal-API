@@ -24,9 +24,10 @@ class Meal(object):
     
     def __init__(self, desc, price):
         #Meal.count = Meal.count + 1
-        self.id = count+1
+        self.id = Meal.count+1
         self.desc = desc
         self.price = price
+        
 
     def	addMeal(self):
 	    meals.append(self) 

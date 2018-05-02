@@ -34,8 +34,6 @@ class MealsApiTestCase(unittest.TestCase):
         self.assertTrue(res,True)
 
     def test_addMeal_with_wrong_values(self):
-        """ add price as string instead of int """
-
         meal = Meal(desc="Matooke and Rice", price="kkk")
         result = meal.addMeal()
         self.assertTrue(result,False)
@@ -48,7 +46,7 @@ class MealsApiTestCase(unittest.TestCase):
         }
         response = self.app.put("/api/v1/meals/21",\
         data=json.dumps(meal), content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
 
 
 
