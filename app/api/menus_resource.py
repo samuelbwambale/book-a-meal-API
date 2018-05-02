@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import jsonify
 from flask_restplus import Resource, reqparse
-from app.models.menu import Menu, menus, get_menu_by_id
+from app.models.menu import Menu, get_menu_by_id
 
 parser = reqparse.RequestParser()
 parser.add_argument('forToday', type= bool, required=True)
@@ -61,9 +61,8 @@ class MenuResource(Resource):
     def get(self):
         data = parser.parse_args()
         my_menu = Menu.get_menu_by_id(data['id'])
-
         if not my_menu:
-            return {'message': 'Menu {} does not exist'. format(data['username'])}
+            return {'message': 'Menu does not exist'. format(data['id'])}
         
         if data['forToday'] == True:
             return jsonify({'my_menu': my_menu}), 200

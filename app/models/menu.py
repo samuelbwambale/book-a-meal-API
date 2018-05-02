@@ -14,7 +14,7 @@ class Menu:
         self.forToday = forToday
         self.meals = []
     
-    def addMenu(self):
+    def setMenu(self):
         menus.append(self)
 
     def updateMenu(self, forToday, meals):
@@ -24,4 +24,11 @@ class Menu:
     def deleteMenu(self):
         menus.remove(self)
         return "Success"
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'forToday': self.forToday, 
+            'meals': [meal.to_dict() for meal in self.meals]
+        }
         		
