@@ -17,11 +17,11 @@ users = [
 ]
 
 def get_user_by_username(user_name):
-    # for user in users:
-    #     if user['username'] == user_name: 
-    #         return user    
-    user = [user for user in users if user['username'] == user_name]
-    return user
+    for user in users:
+        if user['username'] == user_name: 
+            return user    
+    #user = [user for user in users if user['username'] == user_name]
+    #return user
 
 class User:
     def __init__(self, username, password, isAdmin):
@@ -39,5 +39,14 @@ class User:
 
     def deleteUser(self):
         users.remove(self)
+
+    def to_dict(self):
+        return {
+           'username': self.username,
+           'password': self.password,
+           'isAdmin': self.isAdmin
+       }
+
+    
         
 

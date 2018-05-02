@@ -13,8 +13,11 @@ parser.add_argument('isAdmin', type=bool, required=True,
 
 class UsersResource(Resource):
     def get(self):
+        # return {
+        #     'users': [user for user in users]
+        # }, 200
         return jsonify({
-            'users':  users})
+                'users': users})
 
 
 class UserRegister(Resource):
@@ -27,7 +30,8 @@ class UserRegister(Resource):
         isAdmin=data['isAdmin'])
 
         user.addUser()
-        return jsonify({'users': user})
+        return {'user': user.to_dict()}, 201
+       
 
 
 class UserLogin(Resource):
@@ -39,12 +43,13 @@ class UserLogin(Resource):
                     help='Password is required')
         param = parser.parse_args()
         user = get_user_by_username(param['username'])
+        #user = [u for u in users if param['username'] == u['username']]
 
         if not user:
             return {'message': 'User {} does not exist'. format(param['username'])}
       
-        if user.password == param['password']:
-            return {'message': 'Logged in as {}'.format(user.username)}
+        if user['password'] == param['password']:
+            return {'message': 'Logged in as {}'. format(user['username'])}
         else:
             return {'message': 'Wrong credentials'}
 
