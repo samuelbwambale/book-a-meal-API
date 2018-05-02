@@ -23,12 +23,10 @@ class Meal(object):
     count = 0
     
     def __init__(self, desc, price):
-        Meal.count = Meal.count + 1
-        self.id = Meal.count
+        #Meal.count = Meal.count + 1
+        self.id = count+1
         self.desc = desc
         self.price = price
-
-
 
     def	addMeal(self):
 	    meals.append(self) 
@@ -42,6 +40,13 @@ class Meal(object):
         self.desc = desc
         self.price = price   
         return True  
+
+    def to_dict(self):
+        return {
+           'id': self.id,
+           'desc': self.desc,
+           'price': self.price
+       }
 
 
         
