@@ -32,6 +32,7 @@ class MealsResource(Resource):
 
 
 class MealResource(Resource):
+    
     def put(self, meal_id):
         parser = reqparse.RequestParser()
         parser.add_argument('price', type=float, required=True)
