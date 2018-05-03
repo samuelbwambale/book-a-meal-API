@@ -1,9 +1,48 @@
 from datetime import datetime
-menus = []
+from meals import Meal, get_meal_by_id
+
+
+menus = [
+    {'id': 222,
+     'forToday': False,
+     'meals': [{
+         "price": "something soemthing",
+         "id": 8,
+         "description": 1001
+     },
+         {
+         "price": "something soemthing",
+         "id": 9,
+         "description": 1002
+     },
+         {
+         "price": "something soemthing",
+         "id": 15,
+         "description": 1003
+     }]},
+
+    {'id': 111,
+     'forToday': True,
+     'meals': [{
+             "price": "something soemthing",
+             "id": 3,
+         "description": 1001
+     },
+         {
+         "price": "something soemthing",
+         "id": 18,
+         "description": 1002
+     },
+         {
+         "price": "something soemthing",
+         "id": 20,
+         "description": 1003
+     }]}
+]
 
 def get_menu_by_id(menu_id):
     for menu in menus:
-        if menu['menu_id'] == menu_id: 
+        if menu['id'] == menu_id: 
             return menu
 
 class Menu:
@@ -14,8 +53,9 @@ class Menu:
         self.forToday = forToday
         self.meals = []
     
-    def setMenu(self):
-        menus.append(self)
+    def add_meal_to_menu(self, meal_id):
+        selected_meal = get_meal_by_id(meal_id)
+        self.meals.append(selected_meal)
 
     def updateMenu(self, forToday, meals):
         self.forToday = forToday

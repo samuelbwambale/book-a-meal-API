@@ -17,7 +17,7 @@ from .menus_resource import MenusResource
 #POST (setup) or GET menu of the day
 api.add_resource(MenuResource,'/menu')
 #GET all menus
-api.add_resource(MenusResource,'/menu')
+api.add_resource(MenusResource,'/menus')
 
 
 from .users_resource import UsersResource

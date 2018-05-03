@@ -1,54 +1,32 @@
 import unittest
 import json
 from app import app
-from app.models.menu import Menu, get_menu_by_id
+from app.models.menu import Menu, menus, get_menu_by_id
+from app.models.meals import Meal, meals, get_meal_by_id
 
-
-menus = [
-    {'id': 222,
-     'forToday': False,
-     'meals': [{
-         "price": "something soemthing",
-         "id": 8,
-         "description": 1001
-     },
-         {
-         "price": "something soemthing",
-         "id": 9,
-         "description": 1002
-     },
-         {
-         "price": "something soemthing",
-         "id": 15,
-         "description": 1003
-     }]},
-
-    {'id': 111,
-     'forToday': True,
-     'meals': [{
-             "price": "something soemthing",
-             "id": 3,
-         "description": 1001
-     },
-         {
-         "price": "something soemthing",
-         "id": 18,
-         "description": 1002
-     },
-         {
-         "price": "something soemthing",
-         "id": 20,
-         "description": 1003
-     }]}
-]
 
 class MenusApiTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = app.test_client()
+        self.app = app.test_client()    
 
-    
-    def test_setMenu(self):
+
+    def test_add_meal_to_menu(self):
+        mymenu = Menu(False, [])
+        mymenu.add_meal_to_menu(9)
+        result = False
+        for meal in mymenu.meals:
+            if meal['id'] == 9: 
+                result = True
+                break
+        self.assertTrue(result,True)
+
+    def test_get_meal_by_id(self):
+        mymeal = get_meal_by_id(9)
+        self.assertEqual(mymeal['price'], 1002)
+
+
+    def test_post_a_menu(self):
         menu = {
                 "id": 111,
                 'forToday': True,
@@ -62,10 +40,22 @@ class MenusApiTestCase(unittest.TestCase):
                 }
 
         """ Test setting up a menu """
-        response = self.app.post("/api/v1/menu",\
+        response = self.app.post("/api/v1/menu",
         data=json.dumps(menu), content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
+    
+    def test_get_menu_of_the_day(self):
+        available = False
+        for menu in menus:
+            if menu['forToday'] == True: 
+                available = True
+                break
+        self.assertTrue(available,True)
+
+
+
 
     def test_getAllMenus(self):
         response = self.app.get('/api/v1/menus', content_type = 'application/json')
         self.assertEqual(response.status_code, 200)
+
