@@ -34,7 +34,7 @@ from .orders_resource import OrdersResource
 from .orders_resource import OrderResource
 #POST an order or GET all orders
 api.add_resource(OrdersResource,'/orders')
-#PUT (modify) and order or delete it
+#PUT (modify) or GET or DELETE
 api.add_resource(OrderResource,'/orders/orderId')
 
 
