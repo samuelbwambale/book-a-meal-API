@@ -1,4 +1,7 @@
-users = []
+from passlib.hash import pbkdf2_sha256 as sha256
+
+
+
 
 class User:
     def __init__(self, username, password, isAdmin):
@@ -16,5 +19,47 @@ class User:
 
     def deleteUser(self):
         users.remove(self)
+
+    def to_dict(self):
+        return {
+           'username': self.username,
+           'password': self.password,
+           'isAdmin': self.isAdmin
+       }
+
+    @staticmethod
+    def generate_hash(password):
+        return sha256.hash(password)
+
+    @staticmethod
+    def verify_hash(password, hash):
+        return sha256.verify(password, hash)
+
+
+users = [
+        {
+      "username": "maurizzio",
+      "password": User.generate_hash("pwdmmm"),
+      "isAdmin": True
+    },
+    {
+     "username": "kongolo",
+      "password": User.generate_hash("pwdkkk"),
+      "isAdmin": False
+    },
+    {
+     "username": "brians",
+      "password": User.generate_hash("pwdbbb"),
+      "isAdmin": False
+    }
+]
+
+def get_user_by_username(user_name):
+    for user in users:
+        if user['username'] == user_name: 
+            return user    
+    #user = [user for user in users if user['username'] == user_name]
+    #return user
+    
         
 

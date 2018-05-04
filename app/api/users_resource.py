@@ -1,36 +1,78 @@
 from flask_restplus import Resource, reqparse
 from flask import jsonify
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+from app.models.users import User, users, get_user_by_username
 
-from app.users import User, users
-
-
+parser = reqparse.RequestParser()
+parser.add_argument('username', type=str, required=True,
+                    help='Username is required')
+parser.add_argument('password', type=str, required=True,
+                    help='Password is required')
+parser.add_argument('isAdmin', type=bool, required=True,
+                    help='Status is required')
 
 
 class UsersResource(Resource):
     def get(self):
+        # return {
+        #     'users': [user for user in users]
+        # }, 200
         return jsonify({
-            'users':  users })
+                'users': users})
+
 
 class UserRegister(Resource):
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('username', type=str, required=True, help='Username is required')
-        parser.add_argument('password', type=str, required=True, help='Password is required')
-        parser.add_argument('isAdmin', type=bool, required=True, help='Status is required')
-        params = parser.parse_args()
-        username = params['username']
-        password = params['password']
-        isAdmin = params['isAdmin']
+        data = parser.parse_args()
+        user = get_user_by_username(data['username'])
 
-        user = User(username=roberts, password=pwd123, isAdmin=False)
-        user.addUser()
-        return jsonify ({ 'user': user  }), 200
+        if user:
+            return {'message': 'User {} already exists'.format(data['username'])}
 
+        user = User(
+        username = data['username'],
+        password = User.generate_hash(data['password']),
+        isAdmin = data['isAdmin'])
+
+        try:
+            user.addUser()
+            access_token = create_access_token(identity = data['username'])
+            refresh_token = create_refresh_token(identity = data['username'])
+            return { 
+                'user': user.to_dict(),
+                'message': 'User {} was created'.format(data['username']),
+                'access_token': access_token,
+                'refresh_token': refresh_token
+                }, 201
+        except Exception as err:
+            return {'message': '{}'.format(err)}, 500
+       
 
 
 class UserLogin(Resource):
     def post(self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True,
+                    help='Username is required')
+        parser.add_argument('password', type=str, required=True,
+                    help='Password is required')
+        param = parser.parse_args()
+        user = get_user_by_username(param['username'])
+        #import pdb; pdb.set_trace()
+        if not user:
+            return {'message': 'User {} does not exist'. format(param['username'])}
+        if User.verify_hash(param['password'], user['password']):
+            access_token = create_access_token(identity = param['username'])
+            refresh_token = create_refresh_token(identity = param['username'])
+            return {
+                'message': 'Logged in as {}'.format(user['username']),
+                'access_token': access_token,
+                'refresh_token': refresh_token
+                }
+        else:
+            return {'message': 'Wrong credentials'}
+        
+
 
 
 
