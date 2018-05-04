@@ -11,19 +11,9 @@ class MenusApiTestCase(unittest.TestCase):
         self.app = app.test_client()    
 
 
-    def test_add_meal_to_menu(self):
-        mymenu = Menu(False, [])
-        mymenu.add_meal_to_menu(9)
-        result = False
-        for meal in mymenu.meals:
-            if meal['id'] == 9: 
-                result = True
-                break
-        self.assertTrue(result,True)
-
     def test_get_meal_by_id(self):
-        mymeal = get_meal_by_id(9)
-        self.assertEqual(mymeal['price'], 1002)
+        mymeal = get_meal_by_id(22)
+        self.assertEqual(mymeal['price'], 12000)
 
 
     def test_post_a_menu(self):
@@ -51,8 +41,6 @@ class MenusApiTestCase(unittest.TestCase):
                 available = True
                 break
         self.assertTrue(available,True)
-
-
 
 
     def test_getAllMenus(self):
