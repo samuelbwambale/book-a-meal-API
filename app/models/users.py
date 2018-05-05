@@ -1,4 +1,3 @@
-from passlib.hash import pbkdf2_sha256 as sha256
 
 users = []
 
@@ -26,13 +25,6 @@ class User:
            'isAdmin': self.isAdmin
        }
 
-    @staticmethod
-    def generate_hash(password):
-        return sha256.hash(password)
-
-    @staticmethod
-    def verify_hash(password, hash):
-        return sha256.verify(password, hash)
 
 
 def get_user_by_username(user_name):

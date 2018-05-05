@@ -27,8 +27,7 @@ class UsersApiTestCase(unittest.TestCase):
     def test_login(self):
         user = {
             "username": "brians",
-            "password": "pwdbbb",
-            "isAdmin": False
+            "password": "pwdbbb"
         }
         response = self.app.post("/api/v1/auth/login",\
             data=json.dumps(user), content_type='application/json')

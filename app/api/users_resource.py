@@ -31,12 +31,8 @@ class UserRegister(Resource):
         user ={"username":username, "password":password, "isAdmin": isAdmin}
         try:
             users.append(user)
-            access_token = create_access_token(identity = data['username'])
-            refresh_token = create_refresh_token(identity = data['username'])
             return { 
-                'username': (data['username']),
-                'access_token': access_token,
-                'refresh_token': refresh_token
+                'username': (data['username'])
                 }, 201
         except Exception as err:
             return {'message': '{}'.format(err)}, 500
@@ -54,13 +50,9 @@ class UserLogin(Resource):
         user = get_user_by_username(param['username'])
         if not user:
             return {'message': 'User {} does not exist'. format(param['username'])}
-        if User.verify_hash(param['password'], user['password']):
-            access_token = create_access_token(identity = param['username'])
-            refresh_token = create_refresh_token(identity = param['username'])
+        if (param['password'] == user['password']):
             return {
                 'message': 'Logged in as {}'.format(user['username']),
-                'access_token': access_token,
-                'refresh_token': refresh_token
                 }
         else:
             return {'message': 'Wrong credentials'}
