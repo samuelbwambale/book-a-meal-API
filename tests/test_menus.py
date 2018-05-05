@@ -10,12 +10,6 @@ class MenusApiTestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()    
 
-
-    def test_get_meal_by_id(self):
-        mymeal = get_meal_by_id(22)
-        self.assertEqual(mymeal['price'], 12000)
-
-
     def test_post_a_menu(self):
         menu = {
                 "id": 111,
@@ -32,9 +26,21 @@ class MenusApiTestCase(unittest.TestCase):
         """ Test setting up a menu """
         response = self.app.post("/api/v1/menu",
         data=json.dumps(menu), content_type='application/json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
     
     def test_get_menu_of_the_day(self):
+        menu = {
+                "id": 123,
+                'forToday': True,
+                "meals": [
+                        {"id": 21,
+                        "desc": "Beans with rice",
+                        "price": 20000},
+                        {"id": 26,
+                        "desc": "Beans with matooke",
+                        "price": 10000} ]
+                }
+        menus.append(menu)
         available = False
         for menu in menus:
             if menu['forToday'] == True: 

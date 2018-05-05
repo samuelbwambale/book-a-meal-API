@@ -2,47 +2,16 @@ from datetime import datetime
 from meals import Meal, get_meal_by_id
 
 
-menus = [
-    {'id': 222,
-     'forToday': False,
-     'meals': [{
-         "price": "something soemthing",
-         "id": 8,
-         "description": 1001
-     },
-         {
-         "price": "something soemthing",
-         "id": 9,
-         "description": 1002
-     },
-         {
-         "price": "something soemthing",
-         "id": 15,
-         "description": 1003
-     }]},
-
-    {'id': 111,
-     'forToday': True,
-     'meals': [{
-             "price": "something soemthing",
-             "id": 3,
-         "description": 1001
-     },
-         {
-         "price": "something soemthing",
-         "id": 18,
-         "description": 1002
-     },
-         {
-         "price": "something soemthing",
-         "id": 20,
-         "description": 1003
-     }]}
-]
+menus = []
 
 def get_menu_by_id(menu_id):
     for menu in menus:
         if menu['id'] == menu_id: 
+            return menu
+
+def get_menu_for_today():
+    for menu in menus:
+        if menu['forToday'] == True:
             return menu
 
 class Menu:
