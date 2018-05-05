@@ -37,7 +37,6 @@ MarkupSafe==1.0
 marshmallow==2.15.1
 marshmallow-sqlalchemy==0.13.2
 mccabe==0.6.1
-passlib.hash
 psycopg2==2.7.4
 pycparser==2.18
 pylint==1.8.4
