@@ -7,6 +7,8 @@
 | Master      | [![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=master)](https://travis-ci.org/samuelbwambale/book-a-meal)       |
 | Develop     | [![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=develop)](https://travis-ci.org/samuelbwambale/book-a-meal)        |
 
+[![Coverage Status](https://coveralls.io/repos/github/samuelbwambale/book-a-meal/badge.svg?branch=develop)](https://coveralls.io/github/samuelbwambale/book-a-meal?branch=develop)
+
 # Book-A-Meal
 
 This repository contains the description and a guide on how to clone and run the app.
@@ -49,6 +51,7 @@ Book-A-Meal is an application that allows customers to make food orders and help
 
 * Python 2.7 and above
 * Flask Restful
+* Flask Restful plus
 
 ## Requirements
 
