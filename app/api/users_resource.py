@@ -14,11 +14,8 @@ parser.add_argument('isAdmin', type=bool, required=True,
 
 class UsersResource(Resource):
     def get(self):
-        # return {
-        #     'users': [user for user in users]
-        # }, 200
-        return jsonify({
-                'users': users})
+        return {
+                'users': users}
 
 
 class UserRegister(Resource):
@@ -28,24 +25,23 @@ class UserRegister(Resource):
 
         if user:
             return {'message': 'User {} already exists'.format(data['username'])}
-
-        user = User(
-        username = data['username'],
-        password = User.generate_hash(data['password']),
-        isAdmin = data['isAdmin'])
-
+        username = data['username']
+        password = data['password']
+        isAdmin = data['isAdmin']
+        user ={"username":username, "password":password, "isAdmin": isAdmin}
         try:
-            user.addUser()
+            users.append(user)
             access_token = create_access_token(identity = data['username'])
             refresh_token = create_refresh_token(identity = data['username'])
             return { 
-                'user': user.to_dict(),
-                'message': 'User {} was created'.format(data['username']),
+                'username': (data['username']),
                 'access_token': access_token,
                 'refresh_token': refresh_token
                 }, 201
         except Exception as err:
             return {'message': '{}'.format(err)}, 500
+       
+
 
 class UserLogin(Resource):
     def post(self):
@@ -56,8 +52,6 @@ class UserLogin(Resource):
                     help='Password is required')
         param = parser.parse_args()
         user = get_user_by_username(param['username'])
-
-        #import pdb; pdb.set_trace()
         if not user:
             return {'message': 'User {} does not exist'. format(param['username'])}
         if User.verify_hash(param['password'], user['password']):

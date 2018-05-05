@@ -1,7 +1,6 @@
 from passlib.hash import pbkdf2_sha256 as sha256
 
-
-
+users = []
 
 class User:
     def __init__(self, username, password, isAdmin):
@@ -36,30 +35,10 @@ class User:
         return sha256.verify(password, hash)
 
 
-users = [
-        {
-      "username": "maurizzio",
-      "password": User.generate_hash("pwdmmm"),
-      "isAdmin": True
-    },
-    {
-     "username": "kongolo",
-      "password": User.generate_hash("pwdkkk"),
-      "isAdmin": False
-    },
-    {
-     "username": "brians",
-      "password": User.generate_hash("pwdbbb"),
-      "isAdmin": False
-    }
-]
-
 def get_user_by_username(user_name):
     for user in users:
         if user['username'] == user_name: 
-            return user    
-    #user = [user for user in users if user['username'] == user_name]
-    #return user
+            return user
     
         
 
