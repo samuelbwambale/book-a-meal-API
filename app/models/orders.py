@@ -2,30 +2,7 @@ from app.models.users import User, users
 from app.models.meals import Meal, get_meal_by_id
 
 
-orders = [
-        {
-      "id": 101,
-      "meals": [
-    {
-      "id": 21,
-      "desc": "Beans with rice",
-      "price": 20000},
-    {
-      "id": 23,
-      "desc": "Minced meat with pasta",
-      "price": 14000 }
-    ]
-    },
-    {
-      "id": 104,
-      "meals": [
-    {
-      "id": 21,
-      "desc": "Beans with rice",
-      "price": 20000}
-    ]
-    }
-]
+orders = []
 
 def get_order_by_id(order_id):
     for order in orders:

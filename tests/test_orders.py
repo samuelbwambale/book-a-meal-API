@@ -14,7 +14,7 @@ class OrdersApiTestCase(unittest.TestCase):
     def test_addOrder(self):
         order = {
                 "id": 104,
-                "user": {"username": "kongolo", "password": User.generate_hash("pwdkkk"), "isAdmin": False},
+                "user": {"username": "kongolo", "password": "pwdkkk", "isAdmin": False},
                 "meals": [
                         {"id": 21,
                         "desc": "Beans with rice",
@@ -23,7 +23,6 @@ class OrdersApiTestCase(unittest.TestCase):
                         "desc": "Beans with matooke",
                         "price": 10000}]
                 }
-        """ Test adding new meal on API """
         response = self.app.post("/api/v1/orders",
         data=json.dumps(order), content_type='application/json')
         self.assertEqual(response.status_code, 201)
