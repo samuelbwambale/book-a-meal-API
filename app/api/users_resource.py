@@ -22,7 +22,6 @@ class UserRegister(Resource):
     def post(self):
         data = parser.parse_args()
         user = get_user_by_username(data['username'])
-
         if user:
             return {'message': 'User {} already exists'.format(data['username'])}
         username = data['username']
@@ -32,11 +31,10 @@ class UserRegister(Resource):
         try:
             users.append(user)
             return { 
-                'username': (data['username'])
+                'message': 'User {} created'.format(user)
                 }, 201
         except Exception as err:
-            return {'message': '{}'.format(err)}, 500
-       
+            return {'message': '{}'.format(err)}, 500  
 
 
 class UserLogin(Resource):
