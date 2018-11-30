@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=master)](https://travis-ci.org/samuelbwambale/book-a-meal)
-
 [![Build Status](https://travis-ci.org/samuelbwambale/book-a-meal.svg?branch=develop)](https://travis-ci.org/samuelbwambale/book-a-meal)
 
 
